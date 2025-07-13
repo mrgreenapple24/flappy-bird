@@ -19,7 +19,7 @@ This project is designed as an **educational resource** for beginners learning 2
 
 ## 📁 Getting Started
 
-1. Clone or download this repository:
+Clone or download this repository:
    ```bash
    git clone https://github.com/yourusername/flappy-bird-godot.git
    cd flappy-bird-godot
