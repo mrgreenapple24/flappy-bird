@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj14aq7wcjlot"]
+
+[ext_resource type="Script" uid="uid://d4k5xjsxr63v6" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://sokx1uihlfij" path="res://Assets/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://xyssye3wfprh" path="res://Assets/light.png" id="3_6t5aa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 484, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(28, 484, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(56, 484, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkybt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvnsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+radius = 8.0
+height = 26.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 14
+script = ExtResource("1_cvnsp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fkybt")
+autoplay = "default"
+frame_progress = 0.408274
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x3wgy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("3_6t5aa")
+texture_scale = 0.25

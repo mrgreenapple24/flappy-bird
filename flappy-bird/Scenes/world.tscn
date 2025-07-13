@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://4ogl84px2epf"]
+
+[ext_resource type="Texture2D" uid="uid://sokx1uihlfij" path="res://Assets/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_a02cp"]
+[ext_resource type="Script" uid="uid://decixmnsktfm" path="res://Scripts/world.gd" id="1_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://cj14aq7wcjlot" path="res://Scenes/player.tscn" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://gd6pb2mjydoa" path="res://Scenes/ground.tscn" id="3_5a7ea"]
+[ext_resource type="FontFile" uid="uid://6426kk5d7j6h" path="res://Assets/PixelOperator8.ttf" id="5_fo5ed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo5ed"]
+size = Vector2(287, 34)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_fo5ed")
+
+[node name="Backgrounds" type="Node2D" parent="."]
+
+[node name="Day1" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(73, 129)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(-1.62595, -0.978321, 146.26, 258.377)
+metadata/_edit_lock_ = true
+
+[node name="Day2" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(215, 129)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(-1.62595, -0.978321, 146.26, 258.377)
+metadata/_edit_lock_ = true
+
+[node name="Night1" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(72, 129)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(145.059, -1.0379, 146.107, 257.869)
+metadata/_edit_lock_ = true
+
+[node name="Night2" type="Sprite2D" parent="Backgrounds"]
+position = Vector2(216, 129)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(145.059, -1.0379, 146.107, 257.869)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_go701")]
+position = Vector2(62, 126)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(144, 127)
+zoom = Vector2(4, 4)
+
+[node name="PipeTimer" type="Timer" parent="."]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Ground" parent="." instance=ExtResource("3_5a7ea")]
+position = Vector2(-300, 252)
+
+[node name="StartScreen" type="Node2D" parent="."]
+
+[node name="TapTap" type="Sprite2D" parent="StartScreen"]
+position = Vector2(143, 120)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(290.871, 89.6908, 59.5486, 51.2598)
+
+[node name="FlappyBird" type="Sprite2D" parent="StartScreen"]
+position = Vector2(163, 17)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(345.934, 88.757, 163.805, 27.5664)
+
+[node name="GetReady" type="Sprite2D" parent="StartScreen"]
+position = Vector2(142, 72)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(292.316, 57.4883, 98.0134, 27.8437)
+
+[node name="Score" type="Label" parent="."]
+offset_left = 94.0
+offset_top = 6.0
+offset_right = 182.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("5_fo5ed")
+text = "Score: "
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(144, 242)
+shape = SubResource("RectangleShape2D_fo5ed")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2"]
+position = Vector2(144, -18)
+shape = SubResource("RectangleShape2D_fo5ed")
+
+[node name="EndScreen" type="Node2D" parent="."]
+
+[node name="GameOver" type="Sprite2D" parent="EndScreen"]
+position = Vector2(144, 103)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(394.226, 58.3793, 98.4572, 23.5787)
+
+[node name="Restart" type="Sprite2D" parent="EndScreen"]
+position = Vector2(144, 134)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(351.665, 115.883, 117.56, 34.0551)
+
+[node name="Share" type="Sprite2D" parent="EndScreen"]
+position = Vector2(141, 160)
+texture = ExtResource("1_a02cp")
+region_enabled = true
+region_rect = Rect2(290.945, 140.566, 58.1723, 16.5181)
+
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
+[connection signal="body_entered" from="Ground" to="." method="_on_ground_body_entered"]

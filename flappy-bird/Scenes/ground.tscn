@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://gd6pb2mjydoa"]
+
+[ext_resource type="Texture2D" uid="uid://sokx1uihlfij" path="res://Assets/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_688p1"]
+[ext_resource type="Script" uid="uid://c8k56go7535gi" path="res://Scenes/ground.gd" id="1_oltiy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oltiy"]
+size = Vector2(672, 55)
+
+[node name="Ground" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_oltiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_688p1")
+region_enabled = true
+region_rect = Rect2(290.199, 0, 171.014, 57.2475)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(168, 0)
+texture = ExtResource("1_688p1")
+region_enabled = true
+region_rect = Rect2(290.199, 0, 171.014, 57.2475)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(336, 0)
+texture = ExtResource("1_688p1")
+region_enabled = true
+region_rect = Rect2(290.199, 0, 171.014, 57.2475)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(504, 0)
+texture = ExtResource("1_688p1")
+region_enabled = true
+region_rect = Rect2(290.199, 0, 171.014, 57.2475)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(252, 0)
+shape = SubResource("RectangleShape2D_oltiy")

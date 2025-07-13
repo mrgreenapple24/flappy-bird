@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmwvddomyjkgy"]
+
+[ext_resource type="Texture2D" uid="uid://sokx1uihlfij" path="res://Assets/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_algjv"]
+[ext_resource type="Script" uid="uid://bgpv2vw8p2p7g" path="res://Scripts/wall_node.gd" id="1_eyxcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyxcq"]
+size = Vector2(24, 160)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1yagn"]
+polygon = PackedVector2Array(-12, -200, 12, -200, 12, -40, -12, -40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fa2o"]
+size = Vector2(20, 59)
+
+[node name="WallNode" type="Node2D"]
+script = ExtResource("1_eyxcq")
+
+[node name="UpperWall" type="Area2D" parent="."]
+position = Vector2(0, 10)
+collision_layer = 2
+
+[node name="UpperSprite2D" type="Sprite2D" parent="UpperWall"]
+position = Vector2(0, -120)
+texture = ExtResource("1_algjv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(26.8582, 322.127, 28.1933, 161.898)
+
+[node name="UpperCollisionShape2D" type="CollisionShape2D" parent="UpperWall"]
+position = Vector2(0, -120)
+shape = SubResource("RectangleShape2D_eyxcq")
+
+[node name="UpperLightOccluder2D" type="LightOccluder2D" parent="UpperWall"]
+occluder = SubResource("OccluderPolygon2D_1yagn")
+
+[node name="LowerWall" type="Area2D" parent="."]
+position = Vector2(0, -10)
+collision_layer = 2
+
+[node name="LowerSprite2D2" type="Sprite2D" parent="LowerWall"]
+position = Vector2(0, 120)
+texture = ExtResource("1_algjv")
+region_enabled = true
+region_rect = Rect2(26.8582, 322.127, 28.1933, 161.898)
+
+[node name="LowerCollisionShape2D2" type="CollisionShape2D" parent="LowerWall"]
+position = Vector2(0, 120)
+shape = SubResource("RectangleShape2D_eyxcq")
+
+[node name="LowerLightOccluder2D2" type="LightOccluder2D" parent="LowerWall"]
+position = Vector2(0, 240)
+occluder = SubResource("OccluderPolygon2D_1yagn")
+
+[node name="PointArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointArea"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_7fa2o")
+
+[connection signal="body_entered" from="UpperWall" to="." method="_on_upper_wall_body_entered"]
+[connection signal="body_entered" from="LowerWall" to="." method="_on_lower_wall_body_entered"]
+[connection signal="body_entered" from="PointArea" to="." method="_on_point_area_body_entered"]
